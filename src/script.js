@@ -72,10 +72,11 @@ gltfLoader.load(
     'portal-scene.glb',
     (gltf) =>
     {
-        gltf.scene.traverse((child) =>
-        {
-            child.material = bakedMaterial
-        })
+        // gltf.scene.traverse((child) =>
+        // {
+        //     child.material = bakedMaterial
+        // })
+        const bakedMesh = gltf.scene.children.find(child => child.name === 'baked')
         const poleLightAMesh = gltf.scene.children.find(child => child.name === 'poleLightA')
         const poleLightBMesh = gltf.scene.children.find(child => child.name === 'poleLightB')
         const poleLightCMesh = gltf.scene.children.find(child => child.name === 'poleLightC')
@@ -87,6 +88,7 @@ gltfLoader.load(
         poleLightCMesh.material = poleLightMaterial
         poleLightDMesh.material = poleLightMaterial
         portalLightMesh.material = portalLightMaterial
+        bakedMesh.material = bakedMaterial
 
         scene.add(gltf.scene)
     }
